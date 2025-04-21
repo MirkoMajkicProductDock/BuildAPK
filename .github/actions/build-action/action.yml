@@ -1,0 +1,28 @@
+name: 'Build apk'
+description: 'Builds apk and returns path as output'
+inputs:
+  flavour: # id of input
+    description: 'Pass the flavour you want to build artefacts for'
+    required: false
+    default: 'release'
+outputs:
+  apk-path:
+    description: "Path to APK"
+    value: ${{ steps.build-apk.outputs.apk-path }}
+  apk-directory:
+    description: "Directory containing APK"
+    value: ${{ steps.build-apk.outputs.apk-directory }}
+runs:
+  using: "composite"
+  steps:
+    - name: Build APK
+      id: build-apk
+      shell: bash
+      env:
+        INPUT_FLAVOUR: ${{ inputs.flavour }}
+      run: |
+        ./gradlew assemble"$INPUT_FLAVOUR"
+        PATH="app/build/outputs/apk/$INPUT_FLAVOUR/app-$INPUT_FLAVOUR-unsigned.apk"
+        DIR="app/build/outputs/apk/$INPUT_FLAVOUR"
+        echo "apk-path=$(echo $PATH)" >> $GITHUB_OUTPUT
+        echo "apk-directory=$(echo $DIR)" >> $GITHUB_OUTPUT
