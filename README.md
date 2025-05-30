@@ -15,4 +15,22 @@ with:
   flavour: demo
 ```
   
-Default flavour is release.
+**Default flavour is release.**
+
+Flavours that can be used are the one defined in `buildTypes` of `build.gradle` file in `app` module
+```
+buildTypes {
+    dev {
+        ...
+    }
+    qa {
+        ...
+    }
+    demo {
+        ...
+    }
+    release {
+        ...
+    }
+}
+```
