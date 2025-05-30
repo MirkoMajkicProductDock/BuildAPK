@@ -7,7 +7,7 @@ It is possible to set a flavour you want to build APK for.
 ```
 - name: Build APK
   id: build
-  uses: ./.github/actions/build-action
+  uses: MirkoMajkicProductDock/BuildAPK@v0.0.1
 ```
 To set custom flavour use:
 ```
