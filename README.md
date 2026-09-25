@@ -34,3 +34,11 @@ buildTypes {
     }
 }
 ```
+
+## Accessing output example
+```
+- name: Show APK path and folder content
+  run: |
+    echo "APK path is ${{ steps.build.outputs.apk-path }}"
+    echo "Folder is  ${{ steps.build.outputs.apk-directory }}"
+```
